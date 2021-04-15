@@ -1,8 +1,6 @@
 import React from 'react'
-
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import Title from './components/layout/Title'
-
 import { Layout } from 'antd'
 import AddPerson from './components/forms/AddPerson'
 import AddBoat from './components/forms/AddBoat'

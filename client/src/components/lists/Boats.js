@@ -22,7 +22,7 @@ const Boats = () => {
   return (
     <List grid={{ gutter: 20, column: 1 }} style={styles.list}>
         {data.boats.map(({id, year, make, model, price, personId }) => (
-        <List.Item>
+        <List.Item key={id}>
             <Boat key={id} id={id} year={year} make={make} model={model} price={price} personId={personId} />
         </List.Item>
         ))}

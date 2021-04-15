@@ -19,6 +19,7 @@ const People = () => {
   const { loading, error, data } = useQuery(GET_PEOPLE)
   if (loading) return 'Loading...'
   if (error) return `Errror! ${error.message}`
+  
   return (
     <List grid={{ gutter: 20, column: 1 }} style={styles.list}>
       {data.people.map(({ id, firstName, lastName }) => (

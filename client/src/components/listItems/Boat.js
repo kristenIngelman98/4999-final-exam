@@ -14,10 +14,10 @@ const getStyles = () => ({
 const Boat = props => {
   const [id] = useState(props.id)
   const [year, setYear] = useState(props.year)
-  const[make, setMake] = useState(props.make)
-  const[model, setModel] = useState(props.model)
-  const[price, setPrice] = useState(props.price)
-  const[personId, setPersonId] = useState(props.personId)
+  const [make, setMake] = useState(props.make)
+  const [model, setModel] = useState(props.model)
+  const [price, setPrice] = useState(props.price)
+  const [personId, setPersonId] = useState(props.personId)
   const [editMode, setEditMode] = useState(false)
   const styles = getStyles()
 
@@ -33,15 +33,15 @@ const Boat = props => {
       case 'make':
         setMake(value)
         break
-       case 'model':
+      case 'model':
          setModel(value)
          break
-         case 'price':
-            setPrice(value)
-            break
-        case 'personId':
-            setPersonId(value)
-            break
+      case 'price':
+         setPrice(value)
+         break
+      case 'personId':
+         setPersonId(value)
+         break
       default:
         break
     }
@@ -53,14 +53,14 @@ const Boat = props => {
     <List.Item key={props.id}>
       {editMode ? (
         <UpdateBoat
-        id={id}
-        year={year}
-        make={make}
-        model={model}
-        price={price}
-        personId={personId}
-          onButtonClick={handleButtonClick}
-          updateStateVariable={updateStateVariable}
+            id={id}
+            year={year}
+            make={make}
+            model={model}
+            price={price}
+            personId={personId}
+            onButtonClick={handleButtonClick}
+            updateStateVariable={updateStateVariable}
         />
       ) : (
         <Card
@@ -72,14 +72,8 @@ const Boat = props => {
         >
           {fullBoatDetails()}
         </Card>
-        // <Card type="inner" extra={<a href="#">More</a>}>
-        //     {fullBoatDetails()}
-        // </Card>
       )}
     </List.Item>
-        // <Card type="inner" extra={<a href="#">More</a>}>
-        //     {fullBoatDetails()}
-        // </Card>
   )
 }
 

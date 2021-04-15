@@ -9,7 +9,6 @@ export const GET_PEOPLE = gql`
     }
   }
 `
-
 export const ADD_PERSON = gql`
   mutation AddPerson($id: String!, $firstName: String!, $lastName: String!) {
     addPerson(id: $id, firstName: $firstName, lastName: $lastName) {
@@ -19,7 +18,6 @@ export const ADD_PERSON = gql`
     }
   }
 `
-
 export const UPDATE_PERSON = gql`
   mutation UpdatePerson($id: String!, $firstName: String!, $lastName: String!) {
     updatePerson(id: $id, firstName: $firstName, lastName: $lastName) {
@@ -29,7 +27,6 @@ export const UPDATE_PERSON = gql`
     }
   }
 `
-
 export const REMOVE_PERSON = gql`
   mutation RemovePerson($id: String!) {
     removePerson(id: $id) {
@@ -63,7 +60,6 @@ export const ADD_BOAT = gql`
     }
   }
 `
-
 export const UPDATE_BOAT = gql`
   mutation AddBoat($id: String!, $year: String!, $make: String!, $model: String!, $price: String!, $personId: String!) {
     addBoat(id: $id, year: $year, make: $make, model: $model, price: $price, personId: $personId) {
@@ -76,7 +72,6 @@ export const UPDATE_BOAT = gql`
     }
   }
 `
-
 export const REMOVE_BOAT = gql`
   mutation RemoveBoat($id: String!) {
     removeBoat(id: $id) {

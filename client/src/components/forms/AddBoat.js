@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useMutation } from '@apollo/client'
-
+import { useQuery } from '@apollo/client'
 import { Form, Input, Button } from 'antd'
-
+import { Menu, Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid'
-
-// import { ADD_PERSON, GET_PEOPLE } from '../../queries'
 import { ADD_BOAT, GET_BOATS } from '../../queries';
 
 
@@ -16,16 +15,12 @@ const AddBoat = () => {
   const [form] = Form.useForm()
   const [, forceUpdate] = useState()
 
-  // To disable submit button at the beginning.
   useEffect(() => {
     forceUpdate({})
   }, [])
 
   const onFinish = values => {
-      console.log("ON FINISH")
-//     const { firstName, lastName } = values
 const { year, make, model, price, personId } = values
-
     addBoat ({
         variables: {
             id,
@@ -59,9 +54,23 @@ const { year, make, model, price, personId } = values
           }
     })
 
-    console.log("data", values)
-
   }
+  // get personId's to display in drop down menu
+  const { loading, error, data } = useQuery(GET_BOATS)
+  if (loading) return 'Loading...'
+  if (error) return `Errror! ${error.message}`
+  const menu = () => {
+
+    return (
+        <Menu>
+          {data.boats.map(({id, personId}) => (
+          <Menu.Item key={id}>
+            {personId}
+          </Menu.Item>
+        ))}
+    </Menu>
+    )
+  };
 
   return (
     <Form
@@ -102,6 +111,11 @@ const { year, make, model, price, personId } = values
       >
         <Input placeholder='i.e. Bill' />
       </Form.Item>
+      <Dropdown overlay={menu}>
+        <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+          personId <DownOutlined />
+        </a>
+      </Dropdown>
       <Form.Item shouldUpdate={true}>
         {() => (
           <Button
