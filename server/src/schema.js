@@ -101,20 +101,35 @@ const typeDefs = gql`
     lastName: String!
   }
 
+  type Boat {
+    id: String!
+    year: String!
+    make: String!
+    model: String!
+    price: String!
+    personId: String!
+  }
+
   type Query {
     people: [Person]
+    boats: [Boat]
   }
 
   type Mutation {
     addPerson(id: String!, firstName: String!, lastName: String!): Person
     updatePerson(id: String!, firstName: String!, lastName: String!): Person
     removePerson(id: String!): Person
+    addBoat(id: String!, year: String!, make: String!, model: String!, price: String!, personId: String!): Boat
+    updateBoat(id: String!, year: String!, make: String!, model: String!, price: String!, personId: String!): Boat
+    removeBoat(id: String!): Boat
   }
 `
 
+
 const resolvers = {
   Query: {
-    people: () => people
+    people: () => people,
+    boats: () => boats
   },
   Mutation: {
     addPerson: (root, args) => {
@@ -145,7 +160,42 @@ const resolvers = {
         return a.id === removedPerson.id
       })
       return removedPerson
-    }
+    },
+    addBoat: (root, args) => {
+      const newBoat = {
+        id: args.id,
+        year: args.year,
+        make: args.make,
+        model: args.model,
+        price: args.price,
+        personId: args.personId,
+      }
+      boats.push(newBoat)
+      return newBoat
+    },
+    updateBoat: (root, args) => {
+      const boats = find(boats, { id: args.id })
+      if (!boat) {
+        throw new Error(`Couldn't find boat with id ${args.id}`)
+      }
+
+      boat.year = args.year
+      boat.make = args.make
+      boat.model = args.model
+      boat.price = args.price
+      boat.personId = args.personId
+      return boat
+    },
+    removeBoat: (root, args) => {
+      const removedBoat = find(boats, { id: args.id })
+      if (!removedBoat) {
+        throw new Error(`Couldn't find boat with id ${args.id}`)
+      }
+      remove(boats, a => {
+        return a.id === removedBoat.id
+      })
+      return removedBoat
+    },
   }
 }
 export { typeDefs, resolvers }
