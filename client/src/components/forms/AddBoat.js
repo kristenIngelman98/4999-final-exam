@@ -126,7 +126,7 @@ const { year, make, model, price, personId } = values
               form.getFieldsError().filter(({ errors }) => errors.length).length
             }
           >
-            Add boat
+            Add Boat
           </Button>
         )}
       </Form.Item>
